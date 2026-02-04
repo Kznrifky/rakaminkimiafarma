@@ -2,8 +2,8 @@
 ### Project-Based Learning — Rakamin Academy
 
 ## 📊 Dashboard Link & Presentation
-Dashboard : https://lookerstudio.google.com/u/0/reporting/eca0e03f-06c1-4d89-9816-0e53c1936f58
-Presentation : https://drive.google.com/file/d/1n-Y6Fsvky0Nz-v_FBAtaTB9pB5LJvxC5/view
+- Dashboard : https://lookerstudio.google.com/u/0/reporting/eca0e03f-06c1-4d89-9816-0e53c1936f58
+- Presentation : https://drive.google.com/file/d/1n-Y6Fsvky0Nz-v_FBAtaTB9pB5LJvxC5/view
 
 ## 🧠 Project Overview
 This project analyzes **4 years of Kimia Farma transaction data (2020–2023)** to generate actionable business insights related to **sales performance, profitability, and customer behavior**.
