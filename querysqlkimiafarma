@@ -1,4 +1,5 @@
--- CTE 1: Menyiapkan data dasar dengan JOIN dan Window Function
+-- Query SQL PBI Rakamin Academy
+
 WITH BaseData AS (
   SELECT
     t.customer_name,
@@ -12,22 +13,20 @@ WITH BaseData AS (
     b.branch_name,
     b.provinsi,
     b.kota,
-    -- Menghitung rating cabang dengan Window Function (lebih efisien)
-    -- Ini menghitung rata-rata rating untuk setiap partisi/kelompok branch_id
-    AVG(t.rating) OVER (PARTITION BY t.branch_id) AS rating_cabang
+    ROUND(AVG(t.rating) OVER (PARTITION BY t.branch_id), 2) AS rating_cabang
   FROM
-    `rakamin-kf-analytics-467203.kimia_farma.kf_final_transaction` AS t
+    `rakamin-kf-analytics-467203.kimia_farma.kf_final_transaction` t
   JOIN
-    `rakamin-kf-analytics-467203.kimia_farma.kf_kantor_cabang` AS b ON t.branch_id = b.branch_id
+    `rakamin-kf-analytics-467203.kimia_farma.kf_kantor_cabang` b
+    ON t.branch_id = b.branch_id
   JOIN
-    `rakamin-kf-analytics-467203.kimia_farma.kf_product` AS p ON t.product_id = p.product_id
+    `rakamin-kf-analytics-467203.kimia_farma.kf_product` p
+    ON t.product_id = p.product_id
 ),
 
--- CTE 2: Melakukan kalkulasi pada data yang sudah disiapkan
 CalculatedData AS (
   SELECT
-    *, -- Ambil semua kolom dari BaseData
-    -- Hitung persentase gross laba HANYA SATU KALI
+    *,
     CASE
       WHEN actual_price <= 50000 THEN 0.10
       WHEN actual_price <= 100000 THEN 0.15
@@ -35,11 +34,9 @@ CalculatedData AS (
       WHEN actual_price <= 500000 THEN 0.25
       ELSE 0.30
     END AS persentase_gross_laba
-  FROM
-    BaseData
+  FROM BaseData
 )
 
--- Query Final: Menghitung metrik terakhir dan memilih kolom akhir
 SELECT
   customer_name,
   product_id,
@@ -47,11 +44,8 @@ SELECT
   actual_price,
   discount_percentage,
   persentase_gross_laba,
-  -- Hitung nett_sales
-  (actual_price * (1 - discount_percentage)) AS nett_sales,
-  -- Hitung nett_profit menggunakan kolom yang sudah dihitung sebelumnya (lebih bersih)
-  -- Logika: (Harga Jual Bersih) - (Harga Modal)
-  (actual_price * (1 - discount_percentage)) - (actual_price * (1 - persentase_gross_laba)) AS nett_profit,
+  (actual_price * (1 - discount_percentage/100)) AS nett_sales,
+  ((actual_price * (1 - discount_percentage/100)) * persentase_gross_laba) AS nett_profit,
   rating_transaksi,
   rating_cabang,
   transaction_date,
@@ -59,5 +53,4 @@ SELECT
   branch_name,
   provinsi,
   kota
-FROM
-  CalculatedData;
+FROM CalculatedData;
