@@ -50,3 +50,40 @@ The project was completed as part of a **Project-Based Learning program by Rakam
   - Gross profit
   - Branch-level performance
 - Using **CTE & window functions** for efficient processing
+
+📄 Output:
+- `analisis_kinerja.xlsx`
+
+### 2️⃣ Exploratory Data Analysis (EDA)
+- Analyzing yearly sales and profit trends (2020–2023)
+- Identifying top-performing and underperforming branches
+- Product contribution analysis
+- Customer rating distribution analysis
+
+📄 File: `eda.ipynb`
+
+---
+
+### 3️⃣ Customer Segmentation (RFM Analysis)
+- **Recency**: Time since last transaction
+- **Frequency**: Number of transactions per customer
+- **Monetary**: Total spending per customer
+- Segmenting customers into behavioral groups (e.g. Loyal, At Risk, Potential)
+
+📄 Files:
+- `RFM.ipynb`
+- `rfm_segment_counts.csv`
+
+---
+
+### 4️⃣ Business Performance Analysis
+- Evaluating branch performance by region and city
+- Identifying revenue and profit contribution per branch
+- Comparing customer value across segments
+
+---
+
+### 5️⃣ Reporting & Dashboard Preparation
+- Preparing clean and aggregated datasets
+- Creating dashboard-ready outputs for visualization tools with Google Data Studio
+- Supporting data-driven business recommendations
