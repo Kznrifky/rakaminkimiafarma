@@ -39,7 +39,7 @@ The project was completed as part of a **Project-Based Learning program by Rakam
 - **Python (Pandas, NumPy, Matplotlib, Seaborn)**
 - **Jupyter Notebook**
 - **Microsoft Excel**
-- **Power BI / Dashboard-ready outputs**
+- **Google Data Studio / Looker Studio**
 
 ---
 
